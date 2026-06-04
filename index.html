@@ -25,7 +25,6 @@
             background-color: var(--bg-light);
             color: var(--text-dark);
             line-height: 1.6;
-            text-align: justify;
         }
 
         header {
@@ -64,8 +63,19 @@
             color: #94a3b8;
             font-size: 0.85rem;
             text-align: center;
-            padding: 10px;
+            padding: 0;
+            overflow: hidden;
             flex-shrink: 0;
+        }
+
+        .header-text {
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .header-text {
+                text-align: left;
+            }
         }
 
         .header-text h1 {
@@ -84,9 +94,16 @@
         .contact-info {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 1rem;
             font-size: 0.9rem;
             color: #cbd5e1;
+        }
+
+        @media (min-width: 768px) {
+            .contact-info {
+                justify-content: flex-start;
+            }
         }
 
         .contact-info a {
@@ -121,6 +138,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
             border-top: 3px solid var(--primary-eco);
+            text-align: justify;
         }
 
         .grid-2 {
@@ -150,6 +168,7 @@
             margin-bottom: 0.75rem;
             padding-left: 1.5rem;
             position: relative;
+            text-align: left;
         }
 
         .competency-list li::before {
@@ -179,6 +198,7 @@
             flex-direction: column;
             justify-content: space-between;
             margin-bottom: 1rem;
+            text-align: left;
         }
 
         @media (min-width: 600px) {
@@ -220,6 +240,7 @@
             padding-left: 1.25rem;
             color: var(--text-muted);
             font-size: 0.95rem;
+            text-align: justify;
         }
 
         .job-bullets li {
@@ -230,6 +251,7 @@
             color: var(--primary-tech);
             margin: 1rem 0 0.5rem 0;
             font-size: 1.05rem;
+            text-align: left;
         }
 
         .tags {
@@ -263,44 +285,41 @@
             font-size: 0.85rem;
             border-top: 1px solid #334155;
         }
-/* This optimizes the page specifically when saving/printing to PDF */
-@media print {
-    /* Hide the download button so it doesn't print */
-    header button, div[style*="margin-top: 1.5rem"] {
-        display: none !important;
-    }
-    
-    /* Remove dark background gradient to save ink and look like a real CV */
-    header {
-        background: white !important;
-        color: var(--text-dark) !important;
-        padding: 2rem 0 !important;
-        border-bottom: 2px solid var(--primary-eco) !important;
-    }
-    
-    .contact-info, .contact-info a {
-        color: var(--text-muted) !important;
-    }
 
-    body {
-        background-color: white !important;
-    }
+        @media print {
+            /* Exclude print button and image from rendering in the PDF layout */
+            header button, .download-btn-container, .profile-placeholder {
+                display: none !important;
+            }
+            
+            header {
+                background: white !important;
+                color: var(--text-dark) !important;
+                padding: 1.5rem 0 !important;
+                border-bottom: 2px solid var(--primary-eco) !important;
+            }
+            
+            .contact-info, .contact-info a {
+                color: var(--text-muted) !important;
+            }
 
-    /* Prevent text sections from getting awkwardly cut in half across pages */
-    .timeline-item, .card, .summary-box {
-        page-break-inside: avoid;
-    }
-}
-        
+            body {
+                background-color: white !important;
+            }
+
+            .timeline-item, .card, .summary-box {
+                page-break-inside: avoid;
+            }
+        }
     </style>
 </head>
 <body>
 
     <header>
         <div class="header-container">
-            <div class="profile-placeholder" style="padding: 0; overflow: hidden;">
-    <img src="Shameerkpo_2025.jpg" alt="Shameer KPO" style="width: 100%; height: 100%; object-fit: cover;">
-</div>
+            <div class="profile-placeholder">
+                <img src="Shameerkpo_2025.jpg" alt="Shameer KPO" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
             <div class="header-text">
                 <h1>SHAMEER KPO</h1>
                 <h2>Digital Transformation & Operations Specialist | Waste Management & BSF Systems</h2>
@@ -310,12 +329,11 @@
                     <span>✉️ <a href="mailto:shameerkpo@gmail.com">shameerkpo@gmail.com</a></span>
                     <span>🔗 <a href="https://www.linkedin.com/in/shameer-kpo-52042916" target="_blank">LinkedIn</a></span>
                 </div>
-                <!-- ADD THIS BUTTON RIGHT HERE -->
-<div style="margin-top: 1.5rem;">
-    <button onclick="window.print()" style="background-color: var(--primary-eco); color: white; border: none; padding: 0.6rem 1.2rem; font-size: 0.9rem; font-weight: 600; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; transition: background 0.2s;">
-        💾 Download CV as PDF
-    </button>
-</div>
+                <div class="download-btn-container" style="margin-top: 1.5rem;">
+                    <button onclick="window.print()" style="background-color: var(--primary-eco); color: white; border: none; padding: 0.6rem 1.2rem; font-size: 0.9rem; font-weight: 600; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; transition: background 0.2s;">
+                        💾 Download CV as PDF
+                    </button>
+                </div>
             </div>
         </div>
     </header>
@@ -445,8 +463,8 @@
 
                 <div class="card">
                     <h4>Education</h4>
-                    <p style="font-weight: 600; color: var(--primary-tech);">Bachelor of Engineering in Computer Science & Engineering</p>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Anjuman Institute of Technology and Management (1995 - 1999)</p>
+                    <p style="font-weight: 600; color: var(--primary-tech); text-align: left;">Bachelor of Engineering in Computer Science & Engineering</p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; text-align: left;">Anjuman Institute of Technology and Management (1995 - 1999)</p>
 
                     <h4>Key Certifications</h4>
                     <div class="tags">
