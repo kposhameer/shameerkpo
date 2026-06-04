@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shameer KPO | Portfolio</title>
+    <style>
+        :root {
+            --primary-tech: #1e293b; /* Deep Slate Blue */
+            --primary-eco: #15803d;  /* Sustainable Leaf Green */
+            --accent-green: #22c55e;  /* Bright Eco Green */
+            --bg-light: #f8fafc;      /* Clean Off-White */
+            --text-dark: #0f172a;     /* Charcoal Dark */
+            --text-muted: #475569;    /* Slate Gray */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-tech) 0%, #0f172a 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 5px solid var(--primary-eco);
+        }
+
+        .header-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .header-container {
+                flex-direction: row;
+                text-align: left;
+            }
+        }
+
+        .profile-placeholder {
+            width: 150px;
+            height: 150px;
+            background-color: #334155;
+            border: 3px solid var(--accent-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            text-align: center;
+            padding: 10px;
+            flex-shrink: 0;
+        }
+
+        .header-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .header-text h2 {
+            font-size: 1.25rem;
+            color: var(--accent-green);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-green);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        section {
+            margin-bottom: 3.5rem;
+        }
+
+        h3.section-title {
+            color: var(--primary-tech);
+            font-size: 1.5rem;
+            border-left: 4px solid var(--primary-eco);
+            padding-left: 0.75rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .summary-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border-top: 3px solid var(--primary-eco);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        .competency-list {
+            list-style: none;
+        }
+
+        .competency-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .competency-list li::before {
+            content: "✓";
+            color: var(--primary-eco);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border-left: 3px solid #cbd5e1;
+            transition: border-left 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            border-left: 3px solid var(--primary-eco);
+        }
+
+        .timeline-header {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 600px) {
+            .timeline-header {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            color: var(--primary-tech);
+            font-weight: 600;
+        }
+
+        .company-loc {
+            font-size: 0.95rem;
+            color: var(--primary-eco);
+            font-weight: 500;
+        }
+
+        .job-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: #f1f5f9;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            width: fit-content;
+            margin-top: 0.5rem;
+        }
+
+        @media (min-width: 600px) {
+            .job-date {
+                margin-top: 0;
+            }
+        }
+
+        .job-bullets {
+            padding-left: 1.25rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .job-bullets li {
+            margin-bottom: 0.5rem;
+        }
+
+        .skills-section h4 {
+            color: var(--primary-tech);
+            margin: 1rem 0 0.5rem 0;
+            font-size: 1.05rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background: #f1f5f9;
+            color: var(--primary-tech);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid #e2e8f0;
+        }
+
+        .tag.eco {
+            background: #f0fdf4;
+            color: var(--primary-eco);
+            border: 1px solid #bbf7d0;
+        }
+
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+            border-top: 1px solid #334155;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="profile-placeholder" style="padding: 0; overflow: hidden;">
+    <img src="Shameerkpo_2025.jpg" alt="Shameer KPO" style="width: 100%; height: 100%; object-fit: cover;">
+</div>
+            <div class="header-text">
+                <h1>SHAMEER KPO</h1>
+                <h2>Digital Transformation & Operations Specialist | Waste Management & BSF Systems</h2>
+                <div class="contact-info">
+                    <span>📍 Tirur, Kerala, India</span>
+                    <span>📞 +91 9207717007</span>
+                    <span>✉️ <a href="mailto:shameerkpo@gmail.com">shameerkpo@gmail.com</a></span>
+                    <span>🔗 <a href="https://www.linkedin.com/in/shameer-kpo-52042916" target="_blank">LinkedIn</a></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Executive Summary -->
+        <section>
+            <h3 class="section-title">Professional Summary</h3>
+            <div class="summary-box">
+                <p>A highly adaptive Technology Professional and Operations Coordinator with extensive experience bridging the gap between field operations and enterprise technology. Combines a strong computer engineering foundation with deep, practical knowledge of organic waste processing, specifically the Black Soldier Fly (BSF) lifecycle and compost production. Proven track record in mapping complex, multi-unit workflows (hatching, grinding, rearing, pupae), developing precise Standard Operating Procedures (SOPs), and managing daily data logging to optimize conversion rates. A fast learner with a research mindset, exceptionally skilled at translating biological parameters—such as 5-day-old larvae (5DOL) ratios, moisture control, and environmental variables—into actionable business logic, Bill of Materials (BOM), and ERPNext system architectures to drive efficiency in green-tech ecosystems.</p>
+            </div>
+        </section>
+
+        <!-- Core Competencies -->
+        <section>
+            <h3 class="section-title">Core Competencies</h3>
+            <div class="grid-2">
+                <div class="card">
+                    <ul class="competency-list">
+                        <li>BSF Lifecycle & Hatching Workflows</li>
+                        <li>Multi-Unit Process Coordination</li>
+                        <li>ERPNext (v16) Logic Architecture</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <ul class="competency-list">
+                        <li>SOP Development & Operational Auditing</li>
+                        <li>Daily Data Logging & Production Yield Tracking</li>
+                        <li>Cross-Functional Team Liaison</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Experience -->
+        <section>
+            <h3 class="section-title">Professional Experience</h3>
+
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <div>
+                        <div class="job-title">Digital Transformation & Operations Consultant (Freelance)</div>
+                        <div class="company-loc">Waste Management Operations | Kochi, Kerala</div>
+                    </div>
+                    <div class="job-date">May 2025 – Present</div>
+                </div>
+                <ul class="job-bullets">
+                    <li>Authored comprehensive Standard Operating Procedures (SOPs) and workflow blueprints for a multi-unit Black Soldier Fly (BSF) facility covering hatching, grinding, rearing, pupae, and compost-making units.</li>
+                    <li>Translated complex biological operational workflows into technical specifications for ERPNext (v16) developers, defining Item Masters and Bills of Materials (BOM).</li>
+                    <li>Managed daily manual log systems (Excel) to aggregate operational data across processing units, delivering End-of-Day (EOD) metrics to executive management.</li>
+                    <li>Monitored critical environmental variables affecting conversion rates, including hatching rates, moisture levels, temperature variations, and 5-day-old larvae (5DOL) ratios.</li>
+                    <li>Served as the central coordinator and business logic bridge between operational field teams, finance departments, and software engineering teams.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <div>
+                        <div class="job-title">Robotics Trainer</div>
+                        <div class="company-loc">Monarch | Kozhikode, Kerala</div>
+                    </div>
+                    <div class="job-date">Nov 2024 – Apr 2025</div>
+                </div>
+                <ul class="job-bullets">
+                    <li>Conducted hands-on technical training sessions and evaluated student performance metrics.</li>
+                    <li>Provided real-time troubleshooting and operational assistance to trainees.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <div>
+                        <div class="job-title">Learning Management System (LMS) Administrator</div>
+                        <div class="company-loc">University of Technology and Applied Sciences | Ibri, Oman</div>
+                    </div>
+                    <div class="job-date">Jan 2009 – Mar 2023</div>
+                </div>
+                <ul class="job-bullets">
+                    <li>Maintained high-availability open-source server architecture (PHP/MariaDB), managing platform updates, data security, and automated reporting systems for 2,500+ users.</li>
+                    <li>Designed and executed cross-functional training programs and orientations for diverse user groups.</li>
+                    <li>Supervised on-the-job training (OJT) students and coordinated digital content production workflows.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <div>
+                        <div class="job-title">Courseware Engineer</div>
+                        <div class="company-loc">Artech Infosystems (Client: IBM India) | Bangalore</div>
+                    </div>
+                    <div class="job-date">Sep 2007 – Jan 2008</div>
+                </div>
+                <ul class="job-bullets">
+                    <li>Developed structured instructional materials and simulated technical workflows.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Skills, Education & Certifications -->
+        <section class="skills-section">
+            <h3 class="section-title">Skills & Credentials</h3>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <h4>Technical & Operational Skills</h4>
+                    <div class="tags">
+                        <span class="tag eco">BSF Lifecycle Management</span>
+                        <span class="tag eco">Workflow Mapping & SOPs</span>
+                        <span class="tag">ERPNext (v16)</span>
+                        <span class="tag">Bill of Materials (BOM)</span>
+                        <span class="tag">Data Analysis (Excel)</span>
+                        <span class="tag">Linux Systems Admin</span>
+                        <span class="tag">MariaDB / Database Management</span>
+                        <span class="tag">Python / C / C++</span>
+                        <span class="tag">Arduino & Raspberry Pi</span>
+                    </div>
+
+                    <h4>Professional Frameworks</h4>
+                    <div class="tags">
+                        <span class="tag eco">Agile Project Management</span>
+                        <span class="tag">Cross-Functional Liaison</span>
+                        <span class="tag">Instructional Training Design</span>
+                        <span class="tag eco">Research & Ecosystem Analysis</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>Education</h4>
+                    <p style="font-weight: 600; color: var(--primary-tech);">Bachelor of Engineering in Computer Science & Engineering</p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Anjuman Institute of Technology and Management (1995 - 1999)</p>
+
+                    <h4>Key Certifications</h4>
+                    <div class="tags">
+                        <span class="tag">Moodle 4.0 Admin & Educator</span>
+                        <span class="tag">Microsoft HTML5 Application Dev</span>
+                        <span class="tag">IBM Big Data & Hadoop Foundations</span>
+                        <span class="tag">Prompt Engineering Foundations</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Shameer KPO. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
